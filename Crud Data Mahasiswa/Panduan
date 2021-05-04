@@ -1,0 +1,58 @@
+Mohon baca panduan ini dengan seksama, semoga berhasil..
+
+1.  Buat project laravel baru, buka cmd ketik cd C:\xampp\htdocs dan isi dengan
+    
+    composer create-project --prefer-dist laravel/laravel blog
+    
+    (pada "blog" bisa diganti sesuai selera). Pastikan komputer terkoneksi internet. Tunggu sampai proses selesai..
+2.  Salin file Students.php kedalam folder app
+3.  Salin file StudentsController.php kedalam folder app/Http/Controllers
+4.  Salin folder css dan js beserta isinya ke folder public
+5.  Salin folder layout, create.blade.php, edit.blade.php, index.blade.php, read.blade.php kedalam folder resources/views
+6.  Buka file web.php yang ada didalam folder routes, dan hapus kodingan di bawah ini
+    
+    Route::get('/', function () {
+    return view('welcome');
+    });
+    
+    dan salin kodingan dibawah ini, kemudian save.
+    
+    Route::get('/','StudentsController@index');
+
+    Route::get('back','StudentsController@back');
+
+    Route::get('create','StudentsController@create');
+
+    Route::post('insert', 'StudentsController@insert');
+
+    Route::get('delete/{id}','StudentsController@delete');
+
+    Route::get('edit/{id}','StudentsController@edit');
+
+    Route::post('update/{id}', 'StudentsController@update');
+
+    Route::get('read/{id}','StudentsController@read');
+
+7.  Import file Students.sql ke dalam database baru, jika belum buat silahkan buat terlebih dahulu.
+    Buka http://localhost/phpmyadmin di address bar browser, pastikan web server xampp atau laragon sudah
+    dalam keadaan Online.
+    Jika sudah, buat database baru dengan nama "mahasiswa" (tanda petik jangan diikutsertakan),
+    kemudian klik tombol Create atau Buat.
+    Kemudian klik menu import (ada dibagian atas), klik Pilih File, dan upload file Students.sql.
+
+8.  Buka file .env didalam folder project laravel, dan edit bagian:
+
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel     (laravel diganti dengan nama database yang barusan dibuat)
+    DB_USERNAME=root        (root diganti dengan nama user database, jika masih sama tidak perlu diganti) 
+    DB_PASSWORD=            (isi dengan password user database, jika ada passwordnya, jika tida kosongi saja)
+
+    Selanjutnya Save/Simpan
+
+    *)  untuk mengetahui apakah phpmyadmin itu terproteksi oleh password, ketik saja di address bar browser
+        http://localhost/phpmyadmin.
+        Jika langsung mengarah ke halaman phpmyadmin maka itu tandanya tidak diproteksi oleh password.
+
+Kalau ada update nanti saya infokan..
